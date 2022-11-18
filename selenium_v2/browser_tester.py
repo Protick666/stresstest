@@ -13,7 +13,7 @@ dest_dir = "dest/"
 
 def start_tcp_dump(filename):
     #return
-    p = subprocess.Popen(["sudo" ,"tcpdump", "-w", "{}{}".format(source_dir, filename)], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["tcpdump", "-w", "{}{}".format(source_dir, filename)], stdout=subprocess.PIPE)
     time.sleep(.5)
     return p
 
