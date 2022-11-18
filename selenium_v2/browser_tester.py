@@ -8,7 +8,12 @@ import logging
 import time
 
 split = 5
-logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
+#logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
+logger = logging.getLogger('my_logger')
+logger.setLevel(logging.INFO)
+handler = RotatingFileHandler('log/my_log.log', maxBytes=5000000000000000000, backupCount=1000)
+logger.addHandler(handler)
+
 
 
 source_dir = "pcap/"
@@ -129,9 +134,9 @@ def complete_chunk(chunk, browser_mode, filename, chunk_start_index):
             #print("2")
             browser = get_browser(browser_mode, options)
             #print("3")
-            logging.info('Rank: {}, Domain: {}, start: {}'.format(temp_index, website, time.time()))
+            logger.info('Rank: {}, Domain: {}, start: {}'.format(temp_index, website, time.time()))
             load_website(browser, website)
-            logging.info('Rank: {}, Domain: {}, end: {}'.format(temp_index, website, time.time()))
+            logger.info('Rank: {}, Domain: {}, end: {}'.format(temp_index, website, time.time()))
             #print("4")
             # print("Done with {} - {}".format(website, index))
 
