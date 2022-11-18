@@ -30,9 +30,9 @@ def mv_files(filename):
     #return
     cmd = "mv {}{} {}".format(source_dir, filename, dest_dir)
     ans = execute_cmd(cmd)
-    if ans[1] is None:
-        cmd = "rm {}{}".format(source_dir, filename)
-        execute_cmd(cmd)
+    # if ans[1] is None:
+    #     cmd = "rm {}{}".format(source_dir, filename)
+    #     execute_cmd(cmd)
 
 
 def get_options(browser_mode):
