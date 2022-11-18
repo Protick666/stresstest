@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from csv import reader
 import logging
 import time
+from logging.handlers import RotatingFileHandler
 
 split = 5
 #logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
