@@ -39,7 +39,7 @@ def get_options(browser_mode):
     if browser_mode == 'firefox':
         from selenium.webdriver.firefox.options import Options
         options = Options()
-        #options.headless = True
+        options.headless = True
         options.set_preference('security.pki.crlite_mode', 0)
         #options.set_preference("network.dns.forceResolve", "1.1.1.1")
         # profile = webdriver.FirefoxProfile()
