@@ -185,16 +185,16 @@ def runner(browser_mode, mode):
         except Exception as e:
             pass
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--mode', type=str, required=True)
-# parser.add_argument('--dest', type=str, required=True)
-# args = parser.parse_args()
-# print(args)
-# dest_dir = args.dest
-# runner('firefox', args.mode)
+parser = argparse.ArgumentParser()
+parser.add_argument('--mode', type=str, required=True)
+parser.add_argument('--dest', type=str, required=True)
+args = parser.parse_args()
+print(args)
+dest_dir = args.dest
+runner('firefox', args.mode)
 
-dest_dir = 'dest/'
-runner('firefox', 'cold')
+# dest_dir = 'dest/'
+# runner('firefox', 'cold')
 
 
 
