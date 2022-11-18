@@ -4,8 +4,12 @@ import argparse
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from csv import reader
+import logging
+import time
 
 split = 5
+logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
+
 
 source_dir = "pcap/"
 dest_dir = "dest/"
@@ -115,15 +119,19 @@ def load_website(browser, website):
     time.sleep(.5)
     browser.quit()
 
-def complete_chunk(chunk, browser_mode, filename):
+def complete_chunk(chunk, browser_mode, filename, chunk_start_index):
+    temp_index = chunk_start_index - 1
     for website in chunk:
         try:
+            temp_index = temp_index + 1
             #print("1")
             options = get_options(browser_mode)
             #print("2")
             browser = get_browser(browser_mode, options)
             #print("3")
+            logging.info('Rank: {}, Domain: {}, start: {}'.format(temp_index, website, time.time()))
             load_website(browser, website)
+            logging.info('Rank: {}, Domain: {}, end: {}'.format(temp_index, website, time.time()))
             #print("4")
             # print("Done with {} - {}".format(website, index))
 
@@ -151,18 +159,19 @@ def runner(browser_mode, mode):
     #websites = random.sample(websites, 50)
 
     chunk_start_index = 1
+    #web_index = 1
     for chunk in website_chunks:
         try:
             filename = "{}-{}.pcap".format(chunk_start_index, chunk_start_index + split - 1)
             if mode == 'normal' or mode == 'cold':
                 p = start_tcp_dump(filename=filename)
-                complete_chunk(chunk, browser_mode, filename)
+                complete_chunk(chunk, browser_mode, filename, chunk_start_index)
                 end_tcp_dump(p)
                 mv_files(filename)
             elif mode == 'warm':
-                complete_chunk(chunk, browser_mode, filename)
+                complete_chunk(chunk, browser_mode, filename, chunk_start_index)
                 p = start_tcp_dump(filename=filename)
-                complete_chunk(chunk, browser_mode, filename)
+                complete_chunk(chunk, browser_mode, filename, chunk_start_index)
                 end_tcp_dump(p)
                 mv_files(filename)
 
