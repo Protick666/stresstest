@@ -110,7 +110,8 @@ def get_browser(browser_mode, options):
 
 def load_website(browser, website):
     browser.set_page_load_timeout(4)
-    a = browser.get("https://{}".format(website))
+    browser.get("https://{}".format(website))
+    print(browser.title)
     time.sleep(.5)
     browser.quit()
 
