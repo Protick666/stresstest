@@ -12,11 +12,13 @@ dest_dir = "dest/"
 
 
 def start_tcp_dump(filename):
+    return
     p = subprocess.Popen(["sudo" ,"tcpdump", "-w", "{}{}".format(source_dir, filename)], stdout=subprocess.PIPE)
     time.sleep(.5)
     return p
 
 def end_tcp_dump(p):
+    return
     p.terminate()
 
 def execute_cmd(command):
@@ -25,6 +27,7 @@ def execute_cmd(command):
     return output, error
 
 def mv_files(filename):
+    return
     cmd = "mv {}{} {}".format(source_dir, filename, dest_dir)
     ans = execute_cmd(cmd)
     if ans[1] is None:
