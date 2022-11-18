@@ -93,20 +93,20 @@ def divide_chunks(l, n):
 
 def get_browser(browser_mode, options):
     try:
-        print("lul")
+        #print("lul")
         if browser_mode == 'firefox':
-            print("gul")
+            #print("gul")
             browser = webdriver.Firefox(executable_path="drivers/geckodriver", options=options)
-            print("uu")
+            #print("uu")
         elif browser_mode == 'chrome':
             browser = webdriver.Chrome(executable_path="drivers/chromedriver", options=options)
         elif browser_mode == 'edge':
             # 100.0.1156.1/edgedriver_linux64.zip
             browser = webdriver.Edge(executable_path="drivers/msedgedriver", options=options)
-        print("lul")
+        #print("lul")
         return browser
     except Exception as e:
-        print("ku", e)
+        print( e)
 
 def load_website(browser, website):
     browser.set_page_load_timeout(4)
@@ -118,17 +118,17 @@ def load_website(browser, website):
 def complete_chunk(chunk, browser_mode, filename):
     for website in chunk:
         try:
-            print("1")
+            #print("1")
             options = get_options(browser_mode)
-            print("2")
+            #print("2")
             browser = get_browser(browser_mode, options)
-            print("3")
+            #print("3")
             load_website(browser, website)
-            print("4")
+            #print("4")
             # print("Done with {} - {}".format(website, index))
 
         except Exception as e:
-            print("mama")
+            #print("mama")
             print(e, website)
             try:
                 browser.quit()
