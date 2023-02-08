@@ -8,7 +8,7 @@ import logging
 import time
 from logging.handlers import RotatingFileHandler
 
-split = 30
+split = 10
 #logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
 logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
