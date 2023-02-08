@@ -8,7 +8,7 @@ import logging
 import time
 from logging.handlers import RotatingFileHandler
 
-split = 10
+split = 100
 #logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
 logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
@@ -52,9 +52,11 @@ def get_options(browser_mode, ocsp_mode):
     # ocsp_mode in ['stapledon', 'stapledon']:
     if ocsp_mode == 'stapledoff':
         # security.ssl.enable_ocsp_stapling
+        print("yes")
         options.set_preference('security.ssl.enable_ocsp_stapling', False)
     else:
         options.set_preference('security.ssl.enable_ocsp_stapling', True)
+        print("no")
 
     return options
 
