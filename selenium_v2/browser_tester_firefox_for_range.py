@@ -128,8 +128,10 @@ def proc_chunk_entry(chunk, chunk_start_index, chunk_end_index, mode, browser_mo
             pass
 
 def runner(browser_mode, mode, intance):
+
     websites = get_websites()
     website_chunks = list(divide_chunks(websites, split))
+
     '''
         Name tcpdump
         mv files
@@ -138,12 +140,16 @@ def runner(browser_mode, mode, intance):
     starting_chunk_index, ending_chunk_index = 0, len(website_chunks) - 1
 
     while starting_chunk_index != ending_chunk_index:
+        #print("in")
         next_index = starting_chunk_index + 1
         try:
+
             if starting_chunk_index % 5 == intance:
+
                 proc_chunk_entry(website_chunks[starting_chunk_index], starting_chunk_index * split + 1,
                                  starting_chunk_index * split + split, mode, browser_mode)
-        except:
+        except Exception as e:
+            print(e)
             pass
         # proc_chunk_entry(website_chunks[ending_chunk_index], ending_chunk_index * split + 1, min(ending_chunk_index * split + split, len(websites)), mode, browser_mode)
 
@@ -155,10 +161,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--mode', type=str, required=True)
 parser.add_argument('--dest', type=str, required=True)
 parser.add_argument('--id', type=int, required=True)
+
 args = parser.parse_args()
 print(args)
+
 dest_dir = args.dest
-runner('firefox', args.mode, intance=id)
+runner('firefox', args.mode, intance= args.id)
 
 # dest_dir = 'dest/'
 # runner('firefox', 'cold')
