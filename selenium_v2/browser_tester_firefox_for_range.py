@@ -94,7 +94,7 @@ def get_browser(browser_mode, options, ocsp_mode):
 def load_website(browser, website):
     browser.set_page_load_timeout(4)
     browser.get("https://{}".format(website))
-    # print(browser.title)
+    print(browser.title)
     time.sleep(.5)
     browser.quit()
 
