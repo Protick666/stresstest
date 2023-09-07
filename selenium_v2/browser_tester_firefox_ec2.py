@@ -78,7 +78,7 @@ def mv_files(filename):
         print("Deleting ", file)
         print("Result ", ans[1])
         if ans[1] is None:
-            cmd = "sudo rm {}".format(file)
+            cmd = "rm {}".format(file)
             execute_cmd(cmd)
             print("moved and deleted {}".format(file))
 
