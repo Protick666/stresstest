@@ -16,7 +16,7 @@ handler = RotatingFileHandler('log/my_log.log', maxBytes=5000000000000000000, ba
 logger.addHandler(handler)
 from pathlib import Path
 
-source_dir = "/home/ubuntu/common/"
+source_dir = "/common/"
 # dest_dir = "dest/"
 machine_name = None
 
