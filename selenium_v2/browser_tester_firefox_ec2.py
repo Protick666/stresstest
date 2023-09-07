@@ -147,7 +147,7 @@ def proc_chunk_entry(chunk, chunk_start_index, chunk_end_index, mode, browser_mo
         except Exception as e:
             pass
 
-def runner(browser_mode, mode, intance):
+def runner(browser_mode, mode):
 
     websites = get_websites()
     website_chunks = list(divide_chunks(websites, split))
@@ -181,6 +181,9 @@ parser.add_argument('--mode', type=str, required=True)
 # parser.add_argument('--dest', type=str, required=True)
 parser.add_argument('--name', type=str, required=True)
 args = parser.parse_args()
+
+# python3 browser_tester_firefox_ec2.py --mode normal  --name oregon
+
 
 # print(args)
 
