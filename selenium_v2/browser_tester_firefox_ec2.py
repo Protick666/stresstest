@@ -112,6 +112,7 @@ def get_browser(browser_mode, options, ocsp_mode):
         print( "ola", e)
 
 def load_website(browser, website):
+    print("Loading ", website);
     browser.set_page_load_timeout(4)
     browser.get("https://{}".format(website))
     print(browser.title)
