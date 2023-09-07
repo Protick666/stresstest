@@ -8,7 +8,7 @@ import logging
 import time
 from logging.handlers import RotatingFileHandler
 
-split = 5
+split = 50
 #logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
 logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
@@ -63,6 +63,9 @@ from os import listdir
 from os.path import isfile, join, getsize
 
 
+
+cmd = "scp -i {} -P 2222 {} protick@pharah.cs.vt.edu:{}".format(rsa_loc, "hello.txt", dest_pharah_dir)
+ans = execute_cmd(cmd)
 
 def mv_files(filename):
     dir_to_look_at = source_dir[: -1]
@@ -223,6 +226,11 @@ runner('firefox', args.mode)
 '''
 
 '''
+run the containers
+make log file
+press yes
+
+
 run 
 python3 browser_tester_firefox_for_range.py --mode normal --dest /source/ --id 4
 
