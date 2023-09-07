@@ -66,12 +66,17 @@ from os.path import isfile, join, getsize
 
 def mv_files(filename):
     dir_to_look_at = source_dir[: -1]
+
     files_to_move = [join(dir_to_look_at, f) for f in listdir(dir_to_look_at) if isfile(join(dir_to_look_at, f))]
+    print("Pre ", files_to_move)
     files_to_move = [e for e in files_to_move if filename not in e]
+    print("Post ", files_to_move)
 
     for file in files_to_move:
         cmd = "scp -i {} -P 2222 {} protick@pharah.cs.vt.edu:{}{}".format(rsa_loc, file, dest_pharah_dir, machine_name)
         ans = execute_cmd(cmd)
+        print("Deleting ", file)
+        print("Result ", ans[1])
         if ans[1] is None:
             cmd = "sudo rm {}".format(file)
             execute_cmd(cmd)
