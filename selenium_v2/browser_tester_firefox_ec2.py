@@ -14,11 +14,14 @@ logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
 handler = RotatingFileHandler('log/my_log.log', maxBytes=5000000000000000000, backupCount=1000)
 logger.addHandler(handler)
-
+from pathlib import Path
 
 source_dir = "/home/ubuntu/common/"
 # dest_dir = "dest/"
 machine_name = None
+
+dump_directory = "log/"
+Path(dump_directory).mkdir(parents=True, exist_ok=True)
 
 '''
 New EC2
