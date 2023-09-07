@@ -128,6 +128,7 @@ def complete_chunk(chunk, browser_mode, filename, chunk_start_index, ocsp_mode, 
             browser = get_browser(browser_mode, options, ocsp_mode)
             logger.info('{}-{}, Rank: {}, Domain: {}, start: {}'.format(mode, ocsp_mode, temp_index, website, time.time()))
             load_website(browser, website)
+
             logger.info('{}-{}, Rank: {}, Domain: {}, end: {}'.format(mode, ocsp_mode, temp_index, website, time.time()))
         except Exception as e:
             try:
