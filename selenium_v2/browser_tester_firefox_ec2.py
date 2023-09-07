@@ -66,7 +66,7 @@ from os.path import isfile, join, getsize
 
 def mv_files(filename):
     dir_to_look_at = source_dir[: -1]
-
+    print("In the file with ", filename)
     files_to_move = [join(dir_to_look_at, f) for f in listdir(dir_to_look_at) if isfile(join(dir_to_look_at, f))]
     print("Pre ", files_to_move)
     files_to_move = [e for e in files_to_move if filename not in e]
