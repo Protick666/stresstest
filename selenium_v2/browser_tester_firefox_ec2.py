@@ -79,8 +79,8 @@ def get_websites():
         index = 0
         for row in csv_reader:
             index = index + 1
-            if index == 1:
-                continue
+            # if index == 1:
+            #     continue
             websites.append(row[1])
     return websites
 
@@ -112,8 +112,8 @@ def get_browser(browser_mode, options, ocsp_mode):
         print( "ola", e)
 
 def load_website(browser, website):
-    print("Loading ", website);
-    browser.set_page_load_timeout(4)
+    print("Loading ", website)
+    browser.set_page_load_timeout(6)
     browser.get("https://{}".format(website))
     print(browser.title)
     time.sleep(.5)
