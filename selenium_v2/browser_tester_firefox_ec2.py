@@ -109,7 +109,7 @@ def get_browser(browser_mode, options, ocsp_mode):
         #print("lul")
         return browser
     except Exception as e:
-        print( e)
+        print( "ola", e)
 
 def load_website(browser, website):
     browser.set_page_load_timeout(4)
