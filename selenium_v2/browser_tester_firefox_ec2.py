@@ -8,7 +8,7 @@ import logging
 import time
 from logging.handlers import RotatingFileHandler
 
-split = 10
+split = 5
 #logging.basicConfig(filename='timing.log', encoding='utf-8', level=logging.DEBUG)
 logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
@@ -141,7 +141,8 @@ def proc_chunk_entry(chunk, chunk_start_index, chunk_end_index, mode, browser_mo
     # TODO add one -> all on : crlite also on
     for ocsp_mode in ['stapledon']:
         try:
-            filename = "{}-{}-{}.pcap".format('nsec', ocsp_mode, chunk_start_index, chunk_end_index)
+            filename = "{}-{}-{}.pcap".format(ocsp_mode, chunk_start_index, chunk_end_index)
+            print("File name", filename)
             p = start_tcp_dump(filename=filename)
             complete_chunk(chunk, browser_mode, filename, chunk_start_index, ocsp_mode=ocsp_mode, mode=mode)
             end_tcp_dump(p)
