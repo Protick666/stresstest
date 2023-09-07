@@ -20,6 +20,9 @@ source_dir = "/common/"
 # dest_dir = "dest/"
 machine_name = None
 
+dest_pharah_dir = "/net/data/dns-ttl/ocsp_multi_ec2/"
+rsa_loc = "/id_rsa"
+
 dump_directory = "log/"
 Path(dump_directory).mkdir(parents=True, exist_ok=True)
 
@@ -49,19 +52,31 @@ def end_tcp_dump(p):
     #return
     p.terminate()
 
+
+
 def execute_cmd(command):
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     return output, error
 
+from os import listdir
+from os.path import isfile, join, getsize
+
+
+
 def mv_files(filename):
-    return
-    #return
-    # cmd = "mv {}{} {}".format(source_dir, filename, dest_dir)
-    # ans = execute_cmd(cmd)
-    # if ans[1] is None:
-    #     cmd = "rm {}{}".format(source_dir, filename)
-    #     execute_cmd(cmd)
+    dir_to_look_at = source_dir[: -1]
+    files_to_move = [join(dir_to_look_at, f) for f in listdir(dir_to_look_at) if isfile(join(dir_to_look_at, f))]
+    files_to_move = [e for e in files_to_move if filename not in e]
+
+    for file in files_to_move:
+        cmd = "scp -i {} -P 2222 {} protick@pharah.cs.vt.edu:{}{}".format(rsa_loc, file, dest_pharah_dir, machine_name)
+        ans = execute_cmd(cmd)
+        if ans[1] is None:
+            cmd = "sudo rm {}".format(file)
+            execute_cmd(cmd)
+            print("moved and deleted {}".format(file))
+
 
 
 def get_options(browser_mode, ocsp_mode):
